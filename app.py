@@ -107,6 +107,11 @@ with tab1:
                     fps = int(cap.get(cv2.CAP_PROP_FPS))
                     total_frames = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
                     
+                    if total_frames <= 0:
+                        st.error("Engine Error: The uploaded video is empty or corrupted.")
+                        cap.release()
+                        st.stop()
+                    
                     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
                     out_writer = cv2.VideoWriter(temp_output, fourcc, fps, (width, height))
                     
@@ -155,6 +160,7 @@ with tab1:
                                 
                             progress_bar.progress(min(frame_count / total_frames, 1.0))
                             status_text.text(f"Analyzing Telemetry: Frame {frame_count}/{total_frames}...")
+                            time.sleep(0.01)  # Prevent UI freezing during heavy processing
                         else:
                             # Keep non-processed frames in output for smooth playback
                             out_writer.write(frame)

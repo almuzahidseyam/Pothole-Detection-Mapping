@@ -1,0 +1,33 @@
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter
+.ipynb_checkpoints
+
+# Streamlit
+.streamlit/
+
+# YOLO / Ultralytics
+runs/
+yolov8n.pt
+*.pt
+!models/best.pt
+!models/yolov8n.pt
+
+# Data and Videos
+*.mp4
+*.avi
+*.mov
+*.csv
+!data/
